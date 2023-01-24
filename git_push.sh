@@ -3,9 +3,9 @@
 #
 # Usage example: /bin/sh ./git_push.sh wing328 swagger-petstore-perl "minor update"
 
-git_user_id='iOchando'
-git_repo_id='https://github.com/iOchando/defix3_swagger.git'
-release_note='up'
+git_user_id=$1
+git_repo_id=$2
+release_note=$3
 
 if [ "$git_user_id" = "" ]; then
     git_user_id="GIT_USER_ID"
@@ -36,7 +36,7 @@ git_remote=`git remote`
 if [ "$git_remote" = "" ]; then # git remote not defined
 
     if [ "$GIT_TOKEN" = "" ]; then
-        echo "[INFO] \$GIT_TOKEN (environment variable) is not set. Using the Git credential in your environment."
+        echo "[INFO] \$GIT_TOKEN (environment variable) is not set. Using the git credential in your environment."
         git remote add origin https://github.com/${git_user_id}/${git_repo_id}.git
     else
         git remote add origin https://${git_user_id}:${GIT_TOKEN}@github.com/${git_user_id}/${git_repo_id}.git
